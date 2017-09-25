@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul {
+            list-style: none
+        }
+
+        img {
+            vertical-align: top
+        }
+
+        .box {
+            width: 490px;
+            height: 170px;
+            margin: 100px auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .inner {
+            width: 490px;
+            height: 170px;
+            background-color: pink;
+            /*overflow: hidden;*/
+            position: relative;
+        }
+
+        .inner ul {
+            width: 1000%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .inner li {
+            float: left;
+        }
+
+        .square {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .square span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .square span.current {
+            background-color: orangered;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="inner">
+        <ul>
+            <li><a href="#"><img src="images/01.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/02.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/03.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/04.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/05.jpg" alt=""/></a></li>
+        </ul>
+        <div class="square">
+            <span class="current">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+        </div>
+    </div>
+</div>
+<script>
+    //需求：鼠标经过按钮 按钮排他 还要把ul以动画的方式移动到指定位置
+    //1.鼠标经过按钮 按钮排他
+    var box = document.getElementById("box");
+    var inner = box.children[0];
+    var ul = inner.children[0];
+    var squareList = inner.children[1];
+    var squares = squareList.children;//所有按钮
+    var imgWidth = inner.offsetWidth;//图片宽度
+    //alert(imgWidth);
+    //给每一个按钮注册鼠标经过事件
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].index = i;//把索引保存在自定义属性中
+        squares[i].onmouseover = function () {
+            //排他
+            //干掉所有人
+            for (var j = 0; j < squares.length; j++) {
+                squares[j].className = "";
+            }
+            //留下我自己
+            this.className = "current";
+            //以动画的方式把ul移动到指定位置
+            //目标 和 当前按钮索引有关 和 图片宽度有关 而且是负数
+            var target = -this.index * imgWidth;
+            animate(ul, target);
+
+        };
+    }
+
+    function animate(obj, target) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            var leader = obj.offsetLeft;
+            var step = 30;
+            step = leader < target ? step : -step;//step有了正负
+            if (Math.abs(leader - target) >= Math.abs(step)) {
+                leader = leader + step;
+                obj.style.left = leader + "px";
+            } else {
+                obj.style.left = target + "px";//手动放到终点
+                clearInterval(obj.timer);
+            }
+        }, 15);
+    }
+</script>
+</body>
+</html>
