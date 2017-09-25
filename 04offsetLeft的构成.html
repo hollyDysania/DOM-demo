@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #father {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px; /*不是算到margin左侧*/
+            border: 10px solid #000;/*不是border左侧*/
+            padding: 10px;/*是到padding左侧*/
+            position: absolute;
+        }
+
+        #son {
+            width: 50px;
+            height: 50px;
+            margin: 10px;/*不是从margin左侧开始*/
+            border: 10px solid #000;/*是从border左侧开始*/
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="father">
+    <div id="son"></div>
+</div>
+<script>
+    var son = document.getElementById("son");
+    console.log(son.offsetLeft);
+</script>
+</body>
+</html>

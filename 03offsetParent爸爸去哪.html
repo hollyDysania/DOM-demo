@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        #one {
+            position: absolute;
+        }
+
+        #two {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="one">
+    <div id="two">
+        <div id="three"></div>
+    </div>
+</div>
+<script>
+    var three = document.getElementById("three");
+    console.log(three.parentNode);//结构上的父级
+    console.log(three.offsetParent);
+    //距离自身最近的 带有定位的父级 如果没有定位 就往上找 直到找到body为止
+
+</script>
+</body>
+</html>

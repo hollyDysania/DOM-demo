@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #demo {
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="demo" style="height: 100px;"></div>
+<script>
+    var demo = document.getElementById("demo");
+    //获取
+    //console.log(demo.style.height);//只能获取行内样式 是字符串而且有单位
+    //console.log(demo.offsetHeight);//获取到的是元素客观的高度 而且是数值
+    //设置
+    //demo.style.height = "200px";
+    //demo.offsetHeight = 200;//只读属性 不能设置
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #demo {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute; /*一定要记得加定位*/
+        }
+    </style>
+</head>
+<body>
+<button id="btn">奔跑吧盒子</button>
+<div id="demo"></div>
+<script>
+    var timer = null;
+    var btn = document.getElementById("btn");
+    var demo = document.getElementById("demo");
+    //点击按钮 让盒子跑
+    btn.onclick = function () {
+        clearInterval(timer);//防止重复设定定时器
+        timer = setInterval(function () {
+            //leader = leader + step
+            var target = 400;
+            var leader = demo.offsetLeft;//获取当前位置
+            var step = 10;
+            if (leader < target) {
+                leader = leader + step;
+                demo.style.left = leader + "px";//一定要记得加单位
+            } else {
+                clearInterval(timer);
+            }
+            //console.log("代码还在运行");
+        }, 15);//每秒钟 60帧会形成比较细腻的动画效果
+    };
+</script>
+</body>
+</html>

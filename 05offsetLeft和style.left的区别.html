@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #demo {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="demo" style="left:20px; margin:20px;"></div>
+<script>
+    var demo = document.getElementById("demo");
+    console.log(demo.style.left);
+    console.log(demo.offsetLeft);
+</script>
+</body>
+</html>
